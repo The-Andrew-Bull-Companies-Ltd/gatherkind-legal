@@ -1,0 +1,31 @@
+name: Repository hygiene
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  repository-hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4; resolved 2026-10-02
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check patch whitespace and conflict markers
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ -n "$BASE_SHA" && ! "$BASE_SHA" =~ ^0+$ ]] && git cat-file -e "${BASE_SHA}^{commit}" 2>/dev/null; then
+            git diff --check "$BASE_SHA" HEAD
+          else
+            git show --check --format= HEAD
+          fi
+          if git grep -n -I -E '^(<{7}|={7}|>{7})( |$)' -- .; then
+            echo 'Resolve conflict markers before merging.'
+            exit 1
+          fi
