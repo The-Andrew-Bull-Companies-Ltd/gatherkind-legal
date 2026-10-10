@@ -14,3 +14,5 @@
 - Report exact commands run, platforms actually tested, limitations and remaining external setup.
 
 This repository is PUBLIC. Do not copy private specifications or internal legal review here.
+
+- Before committing or pushing, follow [.security/README.md](.security/README.md), install the repository-local secret hooks on new clones, and keep the checks enabled. Never bypass them on project commits/pushes; rejection tests belong in disposable repositories only.

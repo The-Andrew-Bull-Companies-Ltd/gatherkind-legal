@@ -14,4 +14,4 @@ Establish the approval, versioning and publication process before publishing con
 
 ## Verification
 
-Run `git diff --check`. CI runs repository hygiene only. There are no application tests or runtime dependencies yet.
+Run `git diff --check`, `python3 .security/secrets.py history` and `python3 .security/test_secrets.py`. CI runs repository hygiene, secret scanning and hook tests. There are no application tests or runtime dependencies yet.

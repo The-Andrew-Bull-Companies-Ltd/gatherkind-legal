@@ -20,10 +20,14 @@ git diff --check
 ```
 
 No install or run command exists yet. Runtime commands will be documented alongside the first implementation.
-CI currently checks patch whitespace and unresolved conflict markers only.
+CI checks patch whitespace, unresolved conflict markers and Git history for recognised secret patterns, and exercises the secret-protection hooks.
 
 ## Ownership
 
 Initial repository contact: @splishysploshytime. Additional maintainers and review arrangements remain to be assigned.
 
 This repository is intentionally public. Do not add private product specifications, working legal advice, personal data or credentials. No policy here should be treated as effective until approved and published with an effective date.
+
+## Secret protection
+
+Follow [.security/README.md](.security/README.md) to install the pinned scanner and local Git hooks on every new clone before committing or pushing.
