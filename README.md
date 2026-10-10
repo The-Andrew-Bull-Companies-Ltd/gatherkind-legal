@@ -20,7 +20,7 @@ git diff --check
 ```
 
 No install or run command exists yet. Runtime commands will be documented alongside the first implementation.
-CI currently checks patch whitespace and unresolved conflict markers only.
+CI checks patch whitespace, unresolved conflict markers and Git history for recognised secret patterns, and exercises the secret-protection hooks.
 
 ## Ownership
 
